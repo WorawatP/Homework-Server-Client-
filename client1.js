@@ -2,8 +2,8 @@ var net = require('net')
 var HOST = '127.0.0.2'
 var PORT = 6969
 var client = new net.Socket()
-var num = Math.floor(Math.random() * 21)
 var i = 1
+var num
 client.connect(PORT, HOST, function(){
     console.log('connected to : ' + HOST + ':' + PORT)
     client.write('Worawat')
@@ -11,9 +11,9 @@ client.connect(PORT, HOST, function(){
 
 client.on('data', function(data){
     console.log('DATA : ' + data)
+    num = Math.floor(Math.random() * 21)
     if(i <= 5 && data == "WRONG"){
             client.write('' + num)
-            num = Math.floor(Math.random() * 21)
             console.log('Send :' + num)
             console.log('i:' + i)
             i++
